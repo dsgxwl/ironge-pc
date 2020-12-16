@@ -1,30 +1,30 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
+import getTitle from '@/utils/getTitle'
+import 'nprogress/nprogress.css'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
-
+const routes = []
+const files = require.context('./modules/', false, /\.router.js$/)
+files.keys().forEach(key => {
+  const file = files(key).default || files(key)
+  routes.push(...file)
+})
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
-});
+  mode: 'history',
+  routes,
+})
 
-export default router;
+router.beforeEach((to, from, next) => {
+  document.title = getTitle(to.meta.title)
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
+
+export default router
