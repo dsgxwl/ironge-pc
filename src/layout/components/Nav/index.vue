@@ -1,6 +1,11 @@
 <template>
   <ul class="nav">
-    <page-link class="nav-item" v-for="item in navList" :key="item.path" :to="item.path">
+    <page-link
+      :class="['nav-item', { active: item.path === acctiveRoutePath }]"
+      v-for="item in navList"
+      :key="item.path"
+      :to="item.path"
+    >
       <li>{{ item.name }}</li>
     </page-link>
   </ul>
@@ -24,7 +29,7 @@ export default {
         },
         {
           name: '课程商城',
-          path: '/shop',
+          path: 'http://www.baidu.com',
         },
         {
           name: '师资力量',
@@ -40,6 +45,14 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    acctiveRoutePath() {
+      const current = this.$route.path.split('/')[1]
+      let path = '/'
+      current !== 'index' && (path += current)
+      return path
+    },
   },
 }
 </script>

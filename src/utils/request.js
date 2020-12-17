@@ -1,6 +1,6 @@
 import axios from 'axios'
 class Http {
-  constructor(baseUrl) {
+  constructor() {
     this.baseURL = process.env.VUE_APP_BASE_API
     this.timeout = 3000
   }
@@ -10,10 +10,16 @@ class Http {
     })
     instance.interceptors.response.use(
       res => {
-        if (res.status == 200) {
-          return Promise.resolve(res.data)
+        if (res.status === 200) {
+          const code = res.data.code
+          switch (~~code) {
+            case 0:
+              return Promise.resolve(res.data)
+            default:
+              return Promise.reject(res.data)
+          }
         } else {
-          return Promise.reject(res)
+          return Promise.reject(res.data)
         }
       },
       err => {

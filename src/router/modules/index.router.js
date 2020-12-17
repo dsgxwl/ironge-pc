@@ -3,7 +3,7 @@ import Layout from '@/layout'
 export default [
   {
     path: '/',
-    name: 'Layout',
+    name: 'Index',
     component: Layout,
     redirect: '/index',
     children: [

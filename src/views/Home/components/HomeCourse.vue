@@ -1,10 +1,10 @@
 <template>
   <div class="home-course">
     <div class="title">推荐课程</div>
-    <div class="class" v-for="item in courseData" :key="item.id">
+    <div class="home-course-class" v-for="item in courseData" :key="item.id">
       <div class="class-title">
         <div class="title">一级分类A</div>
-        <span>查看更多 > </span>
+        <router-link to="/">查看更多 <i class="el-icon-arrow-right"></i></router-link>
       </div>
       <course-list :courseList="item.content"></course-list>
     </div>
@@ -13,6 +13,7 @@
 <script>
 import CourseList from '@/components/CourseList'
 export default {
+  name: 'HomeCourse',
   components: {
     CourseList,
   },
@@ -350,11 +351,11 @@ export default {
     color: #3e3e3e;
     border-bottom: 1px solid #e2e2e2;
   }
-  .class {
+  &-class {
     &:nth-of-type(2n-1) {
       background-color: #f2f2f2;
     }
-    &-title {
+    .class-title {
       @extend %container;
       display: flex;
       justify-content: space-between;
@@ -364,6 +365,10 @@ export default {
         font-weight: 500;
         color: #3e3e3e;
         line-height: 64px;
+      }
+      a {
+        font-size: 14px;
+        font-weight: 500;
       }
     }
   }

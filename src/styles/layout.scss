@@ -1,4 +1,5 @@
 .wrapper {
+  min-width: 1200px;
   background-color: #f8f8f8;
 }
 
@@ -34,6 +35,7 @@
       &:last-of-type {
         margin: 0;
       }
+      &.active,
       &:hover {
         color: $active-color;
       }

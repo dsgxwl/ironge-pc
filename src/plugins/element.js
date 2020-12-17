@@ -14,6 +14,9 @@ import {
   Loading,
   Message,
 } from 'element-ui'
+Message.install = () => {
+  Vue.prototype.$message = Message
+}
 const components = {
   Pagination,
   Dialog,
@@ -28,9 +31,6 @@ const components = {
   CarouselItem,
   Loading,
   Message,
-}
-Message.install = () => {
-  Vue.prototype.$message = Message
 }
 Object.values(components).forEach(component => {
   Vue.use(component)

@@ -1,15 +1,11 @@
 <template>
-  <div class="course-item">
+  <div class="class-item">
     <div class="cover"></div>
     <div class="content">
       <div class="title">财务报表分析完整版</div>
       <div class="info">
-        <span>135个视频</span> | <span>总长453分钟</span> |
-        <span>融E学</span>
-      </div>
-      <div class="price">
-        <div class="money">199元</div>
-        <div class="sale">1362人购买</div>
+        <span>12门课程</span>
+        <span>班级124人</span>
       </div>
     </div>
   </div>
@@ -25,10 +21,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.course-item {
+.class-item {
   cursor: pointer;
   width: 224px;
-  height: 226px;
+  height: 204px;
   background: #ffffff;
   border-radius: 4px;
   overflow: hidden;
@@ -46,34 +42,20 @@ export default {
   }
   .content {
     box-sizing: border-box;
-    height: 100px;
+    height: 78px;
     padding: 10px;
     .title {
+      line-height: 15px;
       font-size: 14px;
       font-weight: 500;
       color: #3e3e3e;
-      line-height: 15px;
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
     .info {
-      font-size: 12px;
-      color: #666666;
-      line-height: 15px;
-      margin-bottom: 18px;
-    }
-    .price {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      line-height: 24px;
-      .money {
-        font-size: 24px;
-        color: #fc8622;
-      }
-      .sale {
-        font-size: 12px;
-        color: #909399;
-      }
+      font-size: 14px;
+      color: #909399;
     }
   }
 }

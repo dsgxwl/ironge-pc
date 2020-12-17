@@ -1,29 +1,29 @@
 <template>
-  <div class="course-list">
-    <course-item v-for="course in courseList" :key="course.id" :data="course"></course-item>
+  <div class="class-list">
+    <class-item v-for="item in classList" :key="item.id" :data="item"></class-item>
   </div>
 </template>
 <script>
-import CourseItem from './CourseItem'
+import ClassItem from './ClassItem'
 export default {
   props: {
-    courseList: {
+    classList: {
       type: Array,
       default: () => [],
     },
   },
   components: {
-    CourseItem,
+    ClassItem,
   },
 }
 </script>
 <style lang="scss" scoped>
-.course-list {
+.class-list {
   padding: 10px 0 30px;
   @extend %container;
   display: flex;
   flex-wrap: wrap;
-  .course-item {
+  .class-item {
     margin: 0 20px 20px 0;
     &:nth-of-type(5n) {
       margin: 0;

@@ -1,15 +1,13 @@
 <template>
-  <div class="course-item">
+  <div class="teacher-item">
     <div class="cover"></div>
     <div class="content">
-      <div class="title">财务报表分析完整版</div>
       <div class="info">
-        <span>135个视频</span> | <span>总长453分钟</span> |
-        <span>融E学</span>
+        <span class="name">菜小鸟</span>
+        <span>21门课 | 1221关注</span>
       </div>
-      <div class="price">
-        <div class="money">199元</div>
-        <div class="sale">1362人购买</div>
+      <div class="intro">
+        管理学博士、教授、博士生导师。2014年财政部中国会计名家培养工程的入选者、国务院特殊津贴专家...
       </div>
     </div>
   </div>
@@ -25,7 +23,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.course-item {
+.teacher-item {
   cursor: pointer;
   width: 224px;
   height: 226px;
@@ -48,32 +46,24 @@ export default {
     box-sizing: border-box;
     height: 100px;
     padding: 10px;
-    .title {
-      font-size: 14px;
-      font-weight: 500;
-      color: #3e3e3e;
-      line-height: 15px;
-      margin-bottom: 8px;
-    }
     .info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 12px;
       color: #666666;
-      line-height: 15px;
-      margin-bottom: 18px;
+      line-height: 14px;
+      margin-bottom: 14px;
+      .name {
+        font-size: 14px;
+        font-weight: 500;
+        color: #3e3e3e;
+      }
     }
-    .price {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      line-height: 24px;
-      .money {
-        font-size: 24px;
-        color: #fc8622;
-      }
-      .sale {
-        font-size: 12px;
-        color: #909399;
-      }
+    .intro {
+      font-size: 12px;
+      color: #909399;
+      line-height: 18px;
     }
   }
 }
