@@ -19,12 +19,13 @@ export default {
     MFooter,
     PageMain,
   },
-  // created() {
-  //   if (!this.userInfo) {
-  //     const userInfo = getLocal('userInfo', true)
-  //     userInfo && this[type.SET_USER_INFO](userInfo)
-  //   }
-  // },
+  created() {
+    console.log(process.env, '11')
+    // if (!this.userInfo) {
+    //   const userInfo = getLocal('userInfo', true)
+    //   userInfo && this[type.SET_USER_INFO](userInfo)
+    // }
+  },
   // methods: {
   //   ...mapMutations([type.SET_USER_INFO]),
   // },
