@@ -1,10 +1,17 @@
+<!--
+ * @Description: 首页-行业名师
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 08:26:03
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:46:16
+-->
 <template>
   <div class="home-teacher">
     <div class="home-teacher-title">
       <span>行业名师</span>
       <router-link to="/">查看更多 <i class="el-icon-arrow-right"></i></router-link>
     </div>
-    <teacher-list :teacherList="teacherList"></teacher-list>
+    <teacher-list :teacher-list="teacherList"></teacher-list>
   </div>
 </template>
 <script>

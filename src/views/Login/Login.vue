@@ -1,11 +1,18 @@
+<!--
+ * @Description: 登录页
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 10:49:01
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:45:27
+-->
 <template>
   <div class="login">
     <h3>登 录</h3>
     <el-form
+      ref="loginForm"
       :model="loginForm"
       status-icon
       :rules="loginRules"
-      ref="loginForm"
       label-width="100px"
       class="login-form"
     >
@@ -15,8 +22,8 @@
         </el-form-item>
         <el-form-item prop="password">
           <el-input
-            type="password"
             v-model="loginForm.password"
+            type="password"
             placeholder="请输入密码"
             autocomplete="off"
           ></el-input>

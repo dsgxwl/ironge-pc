@@ -1,3 +1,10 @@
+<!--
+ * @Description: 首页-banner
+ * @Author: xiawenlong
+ * @Date: 2020-12-16 22:48:27
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:46:13
+-->
 <template>
   <div class="home-banner">
     <el-carousel height="400px">

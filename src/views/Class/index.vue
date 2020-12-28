@@ -1,14 +1,21 @@
+<!--
+ * @Description: 班级-首页
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 09:39:04
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:46:27
+-->
 <template>
   <div class="class">
     <sort-tool-bar></sort-tool-bar>
-    <class-list :classList="classList"></class-list>
+    <class-list :class-list="classList"></class-list>
     <el-pagination
       background
-      @current-change="handleCurrentChange"
       :current-page.sync="currentPage"
       :page-size="100"
       layout="prev, pager, next, total"
       :total="1000"
+      @current-change="handleCurrentChange"
     >
     </el-pagination>
   </div>

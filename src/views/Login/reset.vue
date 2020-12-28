@@ -1,11 +1,18 @@
+<!--
+ * @Description: 忘记密码
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 16:21:39
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:45:39
+-->
 <template>
   <div class="reset">
     <h3>忘记密码</h3>
     <el-form
+      ref="resetForm"
       :model="resetForm"
       status-icon
       :rules="resetRules"
-      ref="resetForm"
       label-width="100px"
       class="reset-form"
     >
@@ -20,16 +27,16 @@
       </el-form-item>
       <el-form-item prop="password">
         <el-input
-          type="password"
           v-model="resetForm.password"
+          type="password"
           placeholder="请输入密码"
           autocomplete="off"
         ></el-input>
       </el-form-item>
       <el-form-item prop="confirmPassword">
         <el-input
-          type="password"
           v-model="resetForm.confirmPassword"
+          type="password"
           placeholder="请确认密码"
           autocomplete="off"
         ></el-input>

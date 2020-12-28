@@ -1,11 +1,18 @@
+<!--
+ * @Description: 注册页
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 16:21:53
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:45:36
+-->
 <template>
   <div class="register">
     <h3>注 册</h3>
     <el-form
+      ref="registerForm"
       :model="registerForm"
       status-icon
       :rules="registerRules"
-      ref="registerForm"
       label-width="100px"
       class="register-form"
     >
@@ -20,16 +27,16 @@
       </el-form-item>
       <el-form-item prop="password">
         <el-input
-          type="password"
           v-model="registerForm.password"
+          type="password"
           placeholder="请输入密码"
           autocomplete="off"
         ></el-input>
       </el-form-item>
       <el-form-item prop="confirmPassword">
         <el-input
-          type="password"
           v-model="registerForm.confirmPassword"
+          type="password"
           placeholder="请确认密码"
           autocomplete="off"
         ></el-input>

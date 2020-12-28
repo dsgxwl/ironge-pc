@@ -1,12 +1,19 @@
+<!--
+ * @Description: 首页-推荐课程
+ * @Author: xiawenlong
+ * @Date: 2020-12-16 22:57:12
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:46:06
+-->
 <template>
   <div class="home-course">
     <div class="title">推荐课程</div>
-    <div class="home-course-class" v-for="item in courseData" :key="item.id">
+    <div v-for="item in courseData" :key="item.id" class="home-course-class">
       <div class="class-title">
         <div class="title">一级分类A</div>
         <router-link to="/">查看更多 <i class="el-icon-arrow-right"></i></router-link>
       </div>
-      <course-list :courseList="item.content"></course-list>
+      <course-list :course-list="item.content"></course-list>
     </div>
   </div>
 </template>

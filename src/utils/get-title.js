@@ -1,4 +1,4 @@
-const title = '融E学'
+const title = '融e学'
 const getTitle = function(til) {
   let allTitle = til + ' - ' + title
   return allTitle

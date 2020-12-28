@@ -1,3 +1,10 @@
+<!--
+ * @Description: 课程列表组件
+ * @Author: xiawenlong
+ * @Date: 2020-12-16 23:01:35
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:46:58
+-->
 <template>
   <div class="course-list">
     <course-item v-for="course in courseList" :key="course.id" :data="course"></course-item>
@@ -6,14 +13,14 @@
 <script>
 import CourseItem from './CourseItem'
 export default {
+  components: {
+    CourseItem,
+  },
   props: {
     courseList: {
       type: Array,
       default: () => [],
     },
-  },
-  components: {
-    CourseItem,
   },
 }
 </script>

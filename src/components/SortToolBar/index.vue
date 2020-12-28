@@ -1,3 +1,10 @@
+<!--
+ * @Description: 排序工具栏组件
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 09:54:52
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:47:14
+-->
 <template>
   <div class="sort-tool-bar">
     <div class="sort">
@@ -10,9 +17,9 @@
     </div>
     <div class="search">
       <el-input
+        v-model="sortSearchValue"
         placeholder="输入您想搜索的班级名称"
         suffix-icon="el-icon-search"
-        v-model="sortSearchValue"
       >
       </el-input>
     </div>

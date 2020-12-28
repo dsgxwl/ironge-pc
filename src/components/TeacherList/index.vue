@@ -1,3 +1,10 @@
+<!--
+ * @Description: 教师列表组件
+ * @Author: xiawenlong
+ * @Date: 2020-12-17 08:30:54
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-21 11:47:24
+-->
 <template>
   <div class="teacher-list">
     <teacher-item v-for="teacher in teacherList" :key="teacher.id" :data="teacher"></teacher-item>
@@ -6,14 +13,14 @@
 <script>
 import TeacherItem from './TeacherItem'
 export default {
+  components: {
+    TeacherItem,
+  },
   props: {
     teacherList: {
       type: Array,
       default: () => [],
     },
-  },
-  components: {
-    TeacherItem,
   },
 }
 </script>
