@@ -3,7 +3,7 @@
  * @Author: xiawenlong
  * @Date: 2020-12-17 10:49:01
  * @LastEditors: xiawenlong
- * @LastEditTime: 2020-12-21 11:45:27
+ * @LastEditTime: 2020-12-29 08:44:14
 -->
 <template>
   <div class="login">
@@ -54,6 +54,7 @@ const { mapActions } = createNamespacedHelpers('user')
 import * as type from '@/store/action-types'
 import { getVerifyCode } from '@/api/login'
 import timeout from '@/mixins/timeout'
+import to from 'await-to'
 export default {
   name: 'Login',
   mixins: [timeout],
@@ -95,19 +96,14 @@ export default {
     // 发送登录验证码
     async sendVerifyCode() {
       if (this.isSend) return
-      if (!this.loginForm.phone) {
-        return this.$message.warning('请输入手机号')
-      }
+      if (!this.loginForm.phone) return this.$message.warning('请输入手机号')
       const { phone } = this.loginForm
-      try {
-        await getVerifyCode({ phone })
-        this.$message.success('获取验证码成功，请在手机上查看')
-        this.isSend = true
-        await this.timeout()
-        this.isSend = false
-      } catch (error) {
-        this.$message.warning(error.msg)
-      }
+      const [, err] = await to(getVerifyCode({ phone }))
+      if (err) return this.$message.warning(err.msg)
+      this.$message.success('获取验证码成功，请在手机上查看')
+      this.isSend = true
+      await this.timeout()
+      this.isSend = false
     },
     // 切换登录方式
     changeLoginType() {

@@ -9,7 +9,7 @@ export default [
       {
         path: '/login',
         name: 'Login',
-        component: () => import(/* webpackChunkName: 'Login' */ '@/views/Login/Login'),
+        component: () => import(/* webpackChunkName: 'Login' */ '@/views/login/Login'),
         meta: { title: '登录' },
       },
     ],
@@ -22,7 +22,7 @@ export default [
       {
         path: '/register',
         name: 'Register',
-        component: () => import(/* webpackChunkName: 'Register' */ '@/views/Login/Register'),
+        component: () => import(/* webpackChunkName: 'Register' */ '@/views/login/Register'),
         meta: { title: '注册' },
       },
     ],
@@ -35,7 +35,7 @@ export default [
       {
         path: '/resetPassword',
         name: 'ResetPassword',
-        component: () => import(/* webpackChunkName: 'ResetPassword' */ '@/views/Login/Reset'),
+        component: () => import(/* webpackChunkName: 'ResetPassword' */ '@/views/login/Reset'),
         meta: { title: '忘记密码' },
       },
     ],

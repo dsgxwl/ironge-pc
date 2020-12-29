@@ -1,6 +1,6 @@
 <template>
   <div class="user-drop-down">
-    <div class="info" v-if="token">{{ userInfo.nickName }}</div>
+    <div v-if="token" class="info">{{ userInfo.nickName }}</div>
     <template v-else>
       <router-link to="/login">登录</router-link> |
       <router-link to="/register">注册</router-link>

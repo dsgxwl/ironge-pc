@@ -3,7 +3,7 @@
  * @Author: xiawenlong
  * @Date: 2020-12-17 16:21:39
  * @LastEditors: xiawenlong
- * @LastEditTime: 2020-12-21 11:45:39
+ * @LastEditTime: 2020-12-29 08:36:48
 -->
 <template>
   <div class="reset">
@@ -50,6 +50,7 @@
 <script>
 import { resetpassword, getVerifyCodeForResetPas } from '@/api/login'
 import timeout from '@/mixins/timeout'
+import to from 'await-to'
 export default {
   name: 'Reset',
   mixins: [timeout],
@@ -76,33 +77,25 @@ export default {
       this.$refs['resetForm'].validate(async valid => {
         if (!valid) return false
         const { phone, verifyCode, password, confirmPassword } = this.resetForm
-        try {
-          await resetpassword({ phone, verifyCode, password, confirmPassword })
-          this.$message.success('找回密码成功，请登录')
-          setTimeout(() => {
-            this.$router.push('/login')
-          }, 1000)
-        } catch (error) {
-          this.$message.warning(error.msg)
-        }
+        const [, err] = await to(resetpassword({ phone, verifyCode, password, confirmPassword }))
+        if (err) return this.$message.warning(err.msg)
+        this.$message.success('找回密码成功，请登录')
+        setTimeout(() => {
+          this.$router.push('/login')
+        }, 1000)
       })
     },
     // 发送登录验证码
     async sendVerifyCode() {
       if (this.isSend) return
-      if (!this.resetForm.phone) {
-        return this.$message.warning('请输入手机号')
-      }
+      if (!this.resetForm.phone) return this.$message.warning('请输入手机号')
       const { phone } = this.resetForm
-      try {
-        await getVerifyCodeForResetPas({ phone })
-        this.$message.success('获取验证码成功，请在手机上查看')
-        this.isSend = true
-        await this.timeout()
-        this.isSend = false
-      } catch (error) {
-        this.$message.warning(error.msg)
-      }
+      const [, err] = await to(getVerifyCodeForResetPas({ phone }))
+      if (err) this.$message.warning(err.msg)
+      this.$message.success('获取验证码成功，请在手机上查看')
+      this.isSend = true
+      await this.timeout()
+      this.isSend = false
     },
   },
 }

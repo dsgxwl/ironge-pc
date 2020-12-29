@@ -1,9 +1,16 @@
+<!--
+ * @Description: 
+ * @Author: xiawenlong
+ * @Date: 2020-12-16 21:02:54
+ * @LastEditors: xiawenlong
+ * @LastEditTime: 2020-12-29 08:31:38
+-->
 <template>
   <ul class="nav">
     <page-link
-      :class="['nav-item', { active: item.path === acctiveRoutePath }]"
       v-for="item in navList"
       :key="item.path"
+      :class="['nav-item', { active: item.path === acctiveRoutePath }]"
       :to="item.path"
     >
       <li>{{ item.name }}</li>

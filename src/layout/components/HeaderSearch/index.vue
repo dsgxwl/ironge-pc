@@ -1,6 +1,6 @@
 <template>
   <div class="header-search">
-    <el-input placeholder="请输入关键词" v-model="searchValue">
+    <el-input v-model="searchValue" placeholder="请输入关键词">
       <el-button slot="append" icon="el-icon-search"></el-button>
     </el-input>
   </div>

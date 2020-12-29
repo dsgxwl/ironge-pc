@@ -3,6 +3,7 @@ import { login, codeLogin } from '@/api/login'
 import { Message } from 'element-ui'
 import { setCookie } from '@/utils/cookies'
 import { setLocal } from '@/utils/local'
+import to from 'await-to'
 export default {
   state: {
     token: '',
@@ -18,22 +19,16 @@ export default {
   },
   actions: {
     async [type.LOGIN]({ commit }, formData) {
-      try {
-        const result = await login(formData)
-        commit(type.SET_USER_INFO, result.data)
-        return result
-      } catch ({ msg }) {
-        Message.warning(msg)
-      }
+      const [res, err] = await to(login(formData))
+      if (err) return Message.warning(err.msg)
+      commit(type.SET_USER_INFO, res.data)
+      return res
     },
     async [type.CODE_LOGIN]({ commit }, formData) {
-      try {
-        const result = await codeLogin(formData)
-        commit(type.SET_USER_INFO, result.data)
-        return result
-      } catch ({ msg }) {
-        Message.warning(msg)
-      }
+      const [res, err] = await to(codeLogin(formData))
+      if (err) return Message.warning(err.msg)
+      commit(type.SET_USER_INFO, res.data)
+      return res
     },
   },
   modules: {},

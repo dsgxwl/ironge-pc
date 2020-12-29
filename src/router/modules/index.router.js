@@ -10,13 +10,13 @@ export default [
       {
         path: 'index',
         name: 'Home',
-        component: () => import(/* webpackChunkName: 'Home' */ '@/views/Home'),
+        component: () => import(/* webpackChunkName: 'Home' */ '@/views/home'),
         meta: { title: '首页' },
       },
       {
         path: '/404',
         name: '404',
-        component: () => import(/* webpackChunkName: '404' */ '@/views/Error/404.vue'),
+        component: () => import(/* webpackChunkName: '404' */ '@/views/error/404.vue'),
         hidden: true,
         meta: { title: '404' },
       },

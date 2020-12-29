@@ -3,7 +3,7 @@
  * @Author: xiawenlong
  * @Date: 2020-12-17 16:21:53
  * @LastEditors: xiawenlong
- * @LastEditTime: 2020-12-21 11:45:36
+ * @LastEditTime: 2020-12-29 08:34:55
 -->
 <template>
   <div class="register">
@@ -51,6 +51,7 @@
 <script>
 import { register, getVerifyCode } from '@/api/login'
 import timeout from '@/mixins/timeout'
+import to from 'await-to'
 export default {
   name: 'Register',
   mixins: [timeout],
@@ -77,15 +78,12 @@ export default {
       this.$refs['registerForm'].validate(async valid => {
         if (!valid) return false
         const { phone, phoneVerifyCode, password, confirmPassword } = this.registerForm
-        try {
-          await register({ phone, phoneVerifyCode, password, confirmPassword })
-          this.$message.success('注册成功请登录')
-          setTimeout(() => {
-            this.$router.push('/login')
-          }, 1000)
-        } catch (error) {
-          this.$message.warning(error.msg)
-        }
+        const [, err] = await to(register({ phone, phoneVerifyCode, password, confirmPassword }))
+        if (err) return this.$message.warning(err.msg)
+        this.$message.success('注册成功请登录')
+        setTimeout(() => {
+          this.$router.push('/login')
+        }, 1000)
       })
     },
     // 发送登录验证码
@@ -95,15 +93,12 @@ export default {
         return this.$message.warning('请输入手机号')
       }
       const { phone } = this.registerForm
-      try {
-        await getVerifyCode({ phone })
-        this.$message.success('获取验证码成功，请在手机上查看')
-        this.isSend = true
-        await this.timeout()
-        this.isSend = false
-      } catch (error) {
-        this.$message.warning(error.msg)
-      }
+      const [, err] = await to(getVerifyCode({ phone }))
+      if (err) return this.$message.warning(err.msg)
+      this.$message.success('获取验证码成功，请在手机上查看')
+      this.isSend = true
+      await this.timeout()
+      this.isSend = false
     },
   },
 }
