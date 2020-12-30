@@ -3,7 +3,7 @@
  * @Author: xiawenlong
  * @Date: 2020-12-17 10:49:01
  * @LastEditors: xiawenlong
- * @LastEditTime: 2020-12-29 08:44:14
+ * @LastEditTime: 2020-12-30 15:13:10
 -->
 <template>
   <div class="login">
@@ -40,6 +40,7 @@
           }}</el-button>
         </el-form-item>
       </template>
+      <drag-verify @passcallback="verifySuccess"></drag-verify>
       <p class="resetpassword"><router-link to="/resetPassword">忘记密码</router-link></p>
       <el-form-item>
         <el-button type="primary" @click="submitLoginForm">登录</el-button>
@@ -49,6 +50,7 @@
   </div>
 </template>
 <script>
+import DragVerify from './components/DragVerify'
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions } = createNamespacedHelpers('user')
 import * as type from '@/store/action-types'
@@ -57,6 +59,7 @@ import timeout from '@/mixins/timeout'
 import to from 'await-to'
 export default {
   name: 'Login',
+  components: { DragVerify },
   mixins: [timeout],
   data() {
     return {
@@ -74,6 +77,7 @@ export default {
         verifyCode: [{ required: false, message: '请输入验证码', trigger: 'blur' }],
       },
       isSend: false,
+      isVerify: false,
     }
   },
   methods: {
@@ -83,6 +87,7 @@ export default {
     submitLoginForm() {
       this.$refs['loginForm'].validate(async valid => {
         if (!valid) return false
+        if (!this.isVerify) return this.$message.warning('请完成滑动验证')
         const { account, password, phone, verifyCode } = this.loginForm
         if (this.loginType === 1) await this[type.LOGIN]({ account, password })
         if (this.loginType === 2) await this[type.CODE_LOGIN]({ phone, verifyCode })
@@ -116,6 +121,9 @@ export default {
       const { account, password, phone, verifyCode } = this.loginRules
       account[0].required = password[0].required = this.loginType === 1
       phone[0].required = verifyCode[0].required = this.loginType === 2
+    },
+    verifySuccess() {
+      this.isVerify = true
     },
   },
 }
@@ -152,7 +160,7 @@ export default {
       }
     }
     .resetpassword {
-      margin-top: -10px;
+      margin-top: 10px;
       text-align: right;
       margin-bottom: 10px;
       font-size: 14px;
